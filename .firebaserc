@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "build": "moiv-4c40c",
+    "default": "moiv-4c40c"
+  },
+  "targets": {},
+  "etags": {}
+}
