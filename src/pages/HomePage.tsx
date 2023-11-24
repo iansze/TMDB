@@ -28,7 +28,7 @@ const HomePage = () => {
         {/*Overlay */}
         <div className="h-screen bg-black bg-opacity-60  " />
         {/* Content */}
-        <div className="absolute top-1/3 z-10 mx-auto p-3 text-center text-white">
+        <div className="absolute left-[5%] top-1/3 z-10 p-3 text-center text-white md:left-[10%] lg:left-[20%] xl:left-[25%] 2xl:left-[30%]">
           <h1 className="text-4xl font-bold">
             Unlimited films, TV programmes and more
           </h1>

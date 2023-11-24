@@ -24,3 +24,23 @@ export type User = {
   email: string;
   uid: string;
 };
+
+export type PriceData = {
+  currency: string;
+  id: string;
+  interval: string;
+  unit_amount: number;
+};
+
+export type SubscriptionPlan = {
+  active: boolean;
+  description: string;
+  name: string;
+  prices: { [priceId: string]: PriceData };
+};
+
+export type SubscriptionData = {
+  role: string;
+  current_period_end: number;
+  current_period_start: number;
+};

@@ -4,6 +4,7 @@ import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import { User } from "../types/type";
 import { auth } from "../firebase";
+import SubscriptionPlans from "../components/SubscriptionPlans";
 
 const ProfilePage = () => {
   const user = useSelector(
@@ -27,20 +28,7 @@ const ProfilePage = () => {
             <p className="bg-gray-600 p-2">{user?.email}</p>
             <h2 className="text-2xl">Plans</h2>
             <h3 className="text-xl">Dtae</h3>
-            <div className="flex items-center justify-between">
-              <p className="">Standard</p>
-              <button className="border-1 justify-between bg-red-600 p-2">
-                Subscribe
-              </button>
-            </div>
-            <div className="flex items-center justify-between">
-              <p className="">Standard</p>
-              <button className="border-1 bg-red-600 p-2">Subscribe</button>
-            </div>
-            <div className="flex items-center justify-between">
-              <p className="">Standard</p>
-              <button className="border-1 bg-red-600"></button>
-            </div>
+            <SubscriptionPlans />
             <button
               onClick={() => auth.signOut()}
               className="border-1 bg-red-600 p-2"

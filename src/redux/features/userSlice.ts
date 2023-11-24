@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentUser: null,
   isLoading: true,
+  subscription: null,
 };
 
 const userSlice = createSlice({
@@ -15,9 +16,13 @@ const userSlice = createSlice({
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    setSubscription: (state, action) => {
+      state.subscription = action.payload;
+    },
   },
 });
 
-export const { setCurrentUser, setIsLoading } = userSlice.actions;
+export const { setCurrentUser, setIsLoading, setSubscription } =
+  userSlice.actions;
 
 export default userSlice.reducer;
