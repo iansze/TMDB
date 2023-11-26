@@ -1,4 +1,3 @@
-// UserSubscriptionStatus.js
 import { useEffect } from "react";
 import { db } from "../firebase";
 import { collection, doc, onSnapshot, Unsubscribe } from "firebase/firestore";
