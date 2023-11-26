@@ -6,10 +6,14 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useSelector } from "react-redux";
 import UserSubscriptionStatus from "./UserSubscriptionStatus";
 import SubscriptionProductList from "./SubscriptionProductList";
+import { useState } from "react";
+import Loading from "../UI/Loading";
 
 const API_KEY = import.meta.env.VITE_FIREBASE_STRIPE;
 
 const SubscriptionPlans = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const user = useSelector(
     (state: RootState) => state.user.currentUser,
   ) as User | null;
@@ -42,12 +46,14 @@ const SubscriptionPlans = () => {
     onSnapshot(docRef, async (snap) => {
       const sessionData = snap.data();
       if (sessionData && "sessionId" in sessionData) {
+        setIsLoading(true);
         const stripe = await loadStripe(API_KEY);
         await stripe?.redirectToCheckout({ sessionId: sessionData.sessionId });
       } else if (sessionData && "error" in sessionData) {
         alert(`An error occurred: ${sessionData.error.message}`);
       }
     });
+    setIsLoading(false);
   };
 
   return (
@@ -57,6 +63,7 @@ const SubscriptionPlans = () => {
         handleSubscribe={handleSubscribe}
         subscription={subscription}
       />
+      {isLoading && <Loading open={isLoading} />}
     </>
   );
 };

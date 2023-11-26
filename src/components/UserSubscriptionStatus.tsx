@@ -1,8 +1,8 @@
 // UserSubscriptionStatus.js
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { db } from "../firebase";
 import { collection, doc, onSnapshot, Unsubscribe } from "firebase/firestore";
-import { SubscriptionData, User } from "../types/type";
+import { User } from "../types/type";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { setSubscription } from "../redux/features/userSlice";
@@ -12,8 +12,8 @@ const UserSubscriptionStatus = () => {
   const user = useSelector(
     (state: RootState) => state.user.currentUser,
   ) as User | null;
-  const [subscriptionData, setSubscriptionData] = useState<SubscriptionData>();
 
+  // Check if user has a subscription
   useEffect(() => {
     let unsubscribe: Unsubscribe;
     if (user) {
@@ -23,21 +23,19 @@ const UserSubscriptionStatus = () => {
 
       unsubscribe = onSnapshot(subscriptionCollection, (querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          setSubscriptionData({
+          const subscriptionData = {
             role: doc.data().role,
             current_period_end: doc.data().current_period_end.seconds,
             current_period_start: doc.data().current_period_start.seconds,
-          });
+          };
+          dispatch(setSubscription(subscriptionData));
         });
       });
-      dispatch(setSubscription(subscriptionData));
     }
     return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
+      unsubscribe();
     };
-  }, [dispatch, subscriptionData, user]);
+  }, [user, dispatch]);
 
   // This component does not render anything
   return null;

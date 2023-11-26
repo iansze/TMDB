@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { RootState } from "../redux/store";
 import { useEffect } from "react";
+import Loading from "../UI/Loading";
 
 const AuthRoutes = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const AuthRoutes = () => {
   }, [currentUser, isLoading, navigate]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading open={isLoading} />;
   }
 
   return currentUser ? <Outlet /> : null;

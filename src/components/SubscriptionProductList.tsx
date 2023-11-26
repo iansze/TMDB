@@ -55,10 +55,11 @@ const SubscriptionProductList = ({
         const firstPriceId = Object.keys(productData.prices)[0];
         const isCurrentPackage = productData.name
           .toLocaleLowerCase()
-          .includes(subscription?.role || "");
+          .includes(subscription?.role || null!);
+
         return (
           <div className="flex items-center justify-between" key={productId}>
-            <div className="flex gap-4">
+            <div className="mr-4 flex items-center justify-between sm:gap-4">
               <p className="min-w-[100px] font-semibold text-white">
                 {productData.name}
               </p>
@@ -66,7 +67,7 @@ const SubscriptionProductList = ({
             </div>
             <button
               onClick={() => !isCurrentPackage && handleSubscribe(firstPriceId)}
-              className="border-1 justify-between bg-red-600 p-2"
+              className="justify-between border bg-red-600 p-1 sm:p-2"
             >
               {isCurrentPackage ? "Current Package" : "Subscribe"}
             </button>

@@ -4,6 +4,10 @@ import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel } from "swiper/modules";
 import { Movie } from "../types/type";
+import { useState } from "react";
+import MovieDetailPage from "../pages/MovieDetailPage";
+import { Backdrop } from "@mui/material";
+import Loading from "../UI/Loading";
 
 type MovieListProps = {
   title: string;
@@ -17,7 +21,19 @@ const MovieList = ({ title, fetchUrl, fetchKey }: MovieListProps) => {
     queryFn: () => instance.get(fetchUrl),
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  const [selectedMovie, setSelectedMovie] = useState<Movie>(null!);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModalWithMovie = (movie: Movie) => {
+    setSelectedMovie(movie);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  if (isLoading) return <Loading open={isLoading} />;
   if (isError) return <div>Error occurred</div>;
 
   const moviesList = data?.data.results;
@@ -46,12 +62,11 @@ const MovieList = ({ title, fetchUrl, fetchKey }: MovieListProps) => {
         modules={[Mousewheel]}
         mousewheel
         slidesPerView={2}
-        grabCursor={true}
         className="mySwiper"
         breakpoints={sliderBreakPoint}
       >
         {moviesList.map((movie: Movie) => (
-          <SwiperSlide key={movie.id}>
+          <SwiperSlide key={movie.id} onClick={() => openModalWithMovie(movie)}>
             <div
               style={{
                 backgroundImage: `url("https://image.tmdb.org/t/p/original/${
@@ -59,11 +74,24 @@ const MovieList = ({ title, fetchUrl, fetchKey }: MovieListProps) => {
                 }")`,
                 height: "150px",
               }}
-              className="hover: bg-cover bg-center object-contain  hover:scale-110  hover:duration-300 "
+              className="hover: cursor-pointer bg-cover bg-center object-contain hover:scale-110  hover:duration-300 "
             />
           </SwiperSlide>
         ))}
       </Swiper>
+      {isModalOpen && (
+        <Backdrop
+          open={isModalOpen}
+          onClick={handleCloseModal}
+          sx={{
+            color: "#fff",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+          }}
+        >
+          <MovieDetailPage movie={selectedMovie} />
+        </Backdrop>
+      )}
     </div>
   );
 };

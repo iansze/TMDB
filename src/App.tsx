@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { setCurrentUser, setIsLoading } from "./redux/features/userSlice";
-
 import AuthRoutes from "./components/AuthRoutes";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -44,6 +43,7 @@ const App = () => {
           <Route path="/sign-in" element={<SignInPage />} />
           <Route element={<AuthRoutes />}>
             <Route path="/movie" element={<MoviePage />} />
+
             <Route path="/profile" element={<ProfilePage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
