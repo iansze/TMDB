@@ -1,4 +1,4 @@
-# TMDB - The Movie Database Project
+# TMDB Movie App
 
 ## Overview
 TMDB is a dynamic web application for movie enthusiasts. It provides a comprehensive platform for users to explore, discover, and engage with a wide range of movies. Our application offers detailed movie information, personalized recommendations, user profiles, and subscription plans for an enhanced movie-watching experience.
