@@ -32,7 +32,7 @@ TMDB is a dynamic web application for movie enthusiasts. It provides a comprehen
 - Create a Firebase project and configure the Firebase services (Authentication, Firestore, etc.).
 - Replace the Firebase configuration in `src/firebase.ts` with your project's configuration.
 4. **Run the application**
-npm start
+- npm start
 ## Usage
 After running the application, navigate to `http://localhost:3000` in your web browser to start exploring movies on TMDB.
 
