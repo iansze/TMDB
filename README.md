@@ -36,15 +36,9 @@ TMDB is a dynamic web application for movie enthusiasts. It provides a comprehen
 ## Usage
 After running the application, navigate to `http://localhost:3000` in your web browser to start exploring movies on TMDB.
 
-## Contributing
-Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) before submitting pull requests.
-
-## License
-This project is licensed under the [MIT License](LICENSE.md).
-
 ## Contact
 - Project Link: [https://github.com/iansze/TMDB](https://github.com/iansze/TMDB)
-- Developer: [Your Name](your-email@example.com)
+
 
 ## Acknowledgments
 - [TMDB API](https://www.themoviedb.org/documentation/api)
