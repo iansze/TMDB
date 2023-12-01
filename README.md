@@ -24,10 +24,10 @@ TMDB is a dynamic web application for movie enthusiasts. It provides a comprehen
 
 ### Installation
 1. **Clone the repository**
-git clone https://github.com/iansze/TMDB.git
-cd TMDB
+- git clone https://github.com/iansze/TMDB.git
+- cd TMDB
 2. **Install dependencies**
-npm install
+- npm install
 3. **Set up Firebase**
 - Create a Firebase project and configure the Firebase services (Authentication, Firestore, etc.).
 - Replace the Firebase configuration in `src/firebase.ts` with your project's configuration.
