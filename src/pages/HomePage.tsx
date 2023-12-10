@@ -17,7 +17,7 @@ const HomePage = () => {
       {/*Overlay */}
       <div className="absolute inset-0 z-10 h-screen bg-black bg-opacity-60  " />
       <div className=" h-screen bg-netflix-background bg-cover bg-center object-contain ">
-        <div className="relative z-20 mx-auto flex w-5/6 justify-between pt-4">
+        <div className="relative z-20 mx-auto flex w-5/6 justify-between pt-8">
           <svg
             className=" h-14 w-40 rounded-lg fill-green-400 stroke-green-400"
             viewBox="0 0 185.04 133.4"
